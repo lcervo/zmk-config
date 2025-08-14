@@ -1,6 +1,6 @@
 /*
  * Lily58 Sharp Memory LCD Override
- * Using modern pinctrl syntax
+ * Properly disable I2C to avoid peripheral conflicts
  */
 
 / {
@@ -9,8 +9,17 @@
     };
 };
 
-// Disable default I2C OLED
+// Disable ALL I2C/TWI interfaces to free up SPI
+&i2c0 {
+    status = "disabled";
+};
+
 &pro_micro_i2c {
+    status = "disabled";
+};
+
+// Disable any existing SPI configuration
+&pro_micro_spi {
     status = "disabled";
 };
 
@@ -32,7 +41,7 @@
     };
 };
 
-// Configure SPI with pinctrl
+// Configure SPI0 (not pro_micro_spi)
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
