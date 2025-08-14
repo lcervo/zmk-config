@@ -1,8 +1,8 @@
-# build.yaml - Studio support without custom overlay (test basic functionality first)
+# build.yaml - Updated for SuperMini nRF52840
 include:
-  - board: nice_nano_v2
+  - board: supermini_nrf52840  # or whatever the correct board name is
     shield: lily58_left
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: nice_nano_v2
+  - board: supermini_nrf52840
     shield: lily58_right

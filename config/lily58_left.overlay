@@ -9,11 +9,7 @@
     };
 };
 
-// Disable ALL conflicting peripherals that share hardware with SPI0
-&i2c0 {
-    status = "disabled";
-};
-
+// Disable conflicting peripherals - only disable what exists
 &pro_micro_i2c {
     status = "disabled";
 };
@@ -21,12 +17,6 @@
 &pro_micro_spi {
     status = "disabled";
 };
-
-// These are the key ones - uncomment and disable ALL of them
-&spim0 { status = "disabled"; };   // disables SPIM0
-&spis0 { status = "disabled"; };   // disables SPIS0  
-&twim0 { status = "disabled"; };   // disables TWIM0
-&twis0 { status = "disabled"; };   // disables TWIS0
 
 // Configure pinctrl for SPI1 (combine both pinctrl sections)
 &pinctrl {
