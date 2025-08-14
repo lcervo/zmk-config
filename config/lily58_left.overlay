@@ -1,6 +1,6 @@
 /*
  * Lily58 Sharp Memory LCD Override
- * Properly disable I2C/TWI/SPI to avoid peripheral conflicts
+ * Properly disable I2C/SPI to avoid peripheral conflicts
  */
 
 / {
@@ -9,24 +9,8 @@
     };
 };
 
-// Disable ALL I2C/TWI/SPI interfaces to free up SPI0
+// Disable ALL I2C/SPI interfaces to free up SPI0
 &i2c0 {
-    status = "disabled";
-};
-
-&twim0 {
-    status = "disabled";
-};
-
-&twis0 {
-    status = "disabled";
-};
-
-&spim0 {
-    status = "disabled";
-};
-
-&spis0 {
     status = "disabled";
 };
 
