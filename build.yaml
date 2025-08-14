@@ -1,4 +1,4 @@
-# build.yaml - Studio support (remove custom overlay for now)
+# build.yaml - Studio support without custom overlay (test basic display)
 include:
   - board: nice_nano_v2
     shield: lily58_left
