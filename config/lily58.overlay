@@ -1,42 +1,31 @@
 /*
- * Copyright (c) 2022 The ZMK Contributors
- * 
- * SPDX-License-Identifier: MIT
+ * Lily58 Sharp Memory LCD Override
+ * This file will be automatically discovered by ZMK
  */
 
 / {
     chosen {
-        zephyr,display = &ls0xx;
+        zephyr,display = &sharp_display;
     };
 };
 
-// Disable the default I2C display
+// Disable default I2C OLED
 &pro_micro_i2c {
     status = "disabled";
 };
 
-// Configure SPI with YOUR correct pinout
+// Enable SPI for Sharp display  
 &pro_micro_spi {
     status = "okay";
-    compatible = "nordic,nrf-spim";
     
-    // Your exact wiring:
-    // LCD Pin 1 (CS) → P0.22 (D4)
-    // LCD Pin 2 (GND) → GND
-    // LCD Pin 3 (VCC) → 3.3V  
-    // LCD Pin 4 (SCLK) → P0.20 (D3)
-    // LCD Pin 5 (MOSI) → P0.17 (D2)
+    // Your verified pinout:
+    // CS = P0.22 (D4), SCLK = P0.20 (D3), MOSI = P0.17 (D2)
+    cs-gpios = <&pro_micro 22 GPIO_ACTIVE_HIGH>;
     
-    sck-pin = <20>;     // P0.20 (D3) - SCLK
-    mosi-pin = <17>;    // P0.17 (D2) - MOSI  
-    miso-pin = <17>;    // Not used, reuse MOSI
-    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;  // P0.22 (D4) - CS
-
-    ls0xx: ls0xx@0 {
+    sharp_display: ls027b7dh01@0 {
         compatible = "sharp,ls0xx";
-        label = "DISPLAY";
-        spi-max-frequency = <1000000>;
         reg = <0>;
+        spi-max-frequency = <1000000>;
         width = <160>;
         height = <68>;
     };
