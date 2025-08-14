@@ -9,7 +9,7 @@
     };
 };
 
-// Disable ALL I2C/SPI/TWI interfaces to free up SPI0
+// Disable ALL conflicting peripherals that share hardware with SPI0
 &i2c0 {
     status = "disabled";
 };
@@ -22,12 +22,14 @@
     status = "disabled";
 };
 
-// The following disables may cause parse errors if the node doesn't exist for your board.
-// If you get a parse error, comment out the corresponding line.
-// &spim0 { status = "disabled"; };   // disables SPIM0
-// &spis0 { status = "disabled"; };   // disables SPIS0
-// &twim0 { status = "disabled"; };   // disables TWIM0
-// &twis0 { status = "disabled"; };   // disables TWIS0
+// These are the key ones - uncomment and disable ALL of them
+&spim0 { status = "disabled"; };   // disables SPIM0
+&spis0 { status = "disabled"; };   // disables SPIS0  
+&twim0 { status = "disabled"; };   // disables TWIM0
+&twis0 { status = "disabled"; };   // disables TWIS0
+
+// Also disable the generic SPI0 if it exists separately
+&spi0_default { status = "disabled"; };
 
 // Configure pinctrl for SPI
 &pinctrl {
@@ -47,12 +49,12 @@
     };
 };
 
-// Configure SPI0 (not pro_micro_spi)
-&spi0 {
+// Use SPI1 instead of SPI0 to avoid conflicts
+&spi1 {
     status = "okay";
     compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>; // P0.22 (D4) = CS
     
@@ -63,5 +65,23 @@
         spi-max-frequency = <1000000>;
         width = <160>;
         height = <68>;
+    };
+};
+
+// Add corresponding pinctrl for SPI1
+&pinctrl {
+    spi1_default: spi1_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,   // P0.20 (D3) = SCLK
+                    <NRF_PSEL(SPIM_MOSI, 0, 17)>;  // P0.17 (D2) = MOSI
+        };
+    };
+
+    spi1_sleep: spi1_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 17)>;
+            low-power-enable;
+        };
     };
 };
