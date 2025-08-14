@@ -1,6 +1,6 @@
 /*
  * Lily58 Sharp Memory LCD Override
- * This file will be automatically discovered by ZMK
+ * Fixed pin references for Nice!Nano v2
  */
 
 / {
@@ -18,9 +18,9 @@
 &pro_micro_spi {
     status = "okay";
     
-    // Your verified pinout:
-    // CS = P0.22 (D4), SCLK = P0.20 (D3), MOSI = P0.17 (D2)
-    cs-gpios = <&pro_micro 22 GPIO_ACTIVE_HIGH>;
+    // Use correct Nice!Nano v2 pin references:
+    // Your wiring: CS=P0.22(D4), SCLK=P0.20(D3), MOSI=P0.17(D2)
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
     
     sharp_display: ls027b7dh01@0 {
         compatible = "sharp,ls0xx";
