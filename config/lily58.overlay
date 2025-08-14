@@ -15,20 +15,22 @@
     status = "disabled";
 };
 
-// Configure SPI with correct pinout for your wiring
+// Configure SPI with YOUR correct pinout
 &pro_micro_spi {
     status = "okay";
     compatible = "nordic,nrf-spim";
     
-    // Your actual wiring:
-    // CS = P0.22 (D4)
-    // SCLK = P0.20 (D3) 
-    // MOSI = P0.17 (D2)
+    // Your exact wiring:
+    // LCD Pin 1 (CS) → P0.22 (D4)
+    // LCD Pin 2 (GND) → GND
+    // LCD Pin 3 (VCC) → 3.3V  
+    // LCD Pin 4 (SCLK) → P0.20 (D3)
+    // LCD Pin 5 (MOSI) → P0.17 (D2)
     
-    sck-pin = <20>;     // P0.20 - SCLK
-    mosi-pin = <17>;    // P0.17 - MOSI  
+    sck-pin = <20>;     // P0.20 (D3) - SCLK
+    mosi-pin = <17>;    // P0.17 (D2) - MOSI  
     miso-pin = <17>;    // Not used, reuse MOSI
-    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;  // P0.22 - CS
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;  // P0.22 (D4) - CS
 
     ls0xx: ls0xx@0 {
         compatible = "sharp,ls0xx";
