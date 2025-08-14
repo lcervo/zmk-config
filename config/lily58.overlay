@@ -10,29 +10,32 @@
     };
 };
 
-&pro_micro_spi {
-    status = "okay";
-    compatible = "nordic,nrf-spim";
-    
-    ls0xx: ls0xx@0 {
-        compatible = "sharp,ls0xx";
-        label = "DISPLAY";
-        spi-max-frequency = <1000000>;  // Reduced speed
-        reg = <0>;
-        width = <160>;
-        height = <68>;
-    };
-};
-
-// Override the default I2C display pins for SPI
+// Disable the default I2C display
 &pro_micro_i2c {
     status = "disabled";
 };
 
-// Configure SPI pins for J4 connector
+// Configure SPI with correct pinout for your wiring
 &pro_micro_spi {
-    sck-pin = <6>;   // P0.06 - SCL becomes SCLK
-    mosi-pin = <8>;  // P0.08 - SDA becomes MOSI
-    miso-pin = <8>;  // Not used but required, reuse MOSI
-    cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; // P0.17 - Extra pin for CS
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    
+    // Your actual wiring:
+    // CS = P0.22 (D4)
+    // SCLK = P0.20 (D3) 
+    // MOSI = P0.17 (D2)
+    
+    sck-pin = <20>;     // P0.20 - SCLK
+    mosi-pin = <17>;    // P0.17 - MOSI  
+    miso-pin = <17>;    // Not used, reuse MOSI
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;  // P0.22 - CS
+
+    ls0xx: ls0xx@0 {
+        compatible = "sharp,ls0xx";
+        label = "DISPLAY";
+        spi-max-frequency = <1000000>;
+        reg = <0>;
+        width = <160>;
+        height = <68>;
+    };
 };

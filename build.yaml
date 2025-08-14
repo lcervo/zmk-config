@@ -1,8 +1,9 @@
-# build.yaml - Studio support without custom overlay (test basic display)
+# build.yaml - Studio support with correct Sharp MIP overlay
 include:
   - board: nice_nano_v2
     shield: lily58_left
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DDTC_OVERLAY_FILE="${ZMKLOCALCONFIG}/lily58.overlay"
   - board: nice_nano_v2
     shield: lily58_right
+    cmake-args: -DDTC_OVERLAY_FILE="${ZMKLOCALCONFIG}/lily58.overlay"
