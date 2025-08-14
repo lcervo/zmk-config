@@ -32,23 +32,21 @@
     };
 };
 
-// Configure SPI0 for Sharp display (following official Zephyr example)
+// Configure SPI0 for Sharp display (using standard SPI cs-gpios)
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>; // P0.22 = D4 = CS (standard SPI approach)
     
     sharp_display: ls0xx@0 {
         compatible = "sharp,ls0xx";
         reg = <0>;
-        label = "DISPLAY";
         spi-max-frequency = <2000000>;
         width = <160>;
         height = <68>;
-        scs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;  // P0.22 = D4 = CS (note: scs-gpios, not cs-gpios!)
-        // extcomin-gpios = <&gpio0 x GPIO_ACTIVE_HIGH>; // Optional VCOM pin
-        // disp-gpios = <&gpio0 x GPIO_ACTIVE_HIGH>;     // Optional display enable pin
+        // Note: removed label (deprecated) and scs-gpios (not supported in this ZMK version)
     };
 };
