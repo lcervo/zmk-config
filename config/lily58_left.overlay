@@ -1,6 +1,6 @@
 /*
  * Lily58 Sharp Memory LCD Override
- * Properly disable I2C/SPI to avoid peripheral conflicts
+ * Properly disable I2C/SPI/TWI to avoid peripheral conflicts
  */
 
 / {
@@ -9,7 +9,7 @@
     };
 };
 
-// Disable ALL I2C/SPI interfaces to free up SPI0
+// Disable ALL I2C/SPI/TWI interfaces to free up SPI0
 &i2c0 {
     status = "disabled";
 };
@@ -21,6 +21,13 @@
 &pro_micro_spi {
     status = "disabled";
 };
+
+// The following disables may cause parse errors if the node doesn't exist for your board.
+// If you get a parse error, comment out the corresponding line.
+// &spim0 { status = "disabled"; };   // disables SPIM0
+// &spis0 { status = "disabled"; };   // disables SPIS0
+// &twim0 { status = "disabled"; };   // disables TWIM0
+// &twis0 { status = "disabled"; };   // disables TWIS0
 
 // Configure pinctrl for SPI
 &pinctrl {
