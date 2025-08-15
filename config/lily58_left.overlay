@@ -1,0 +1,29 @@
+/*
+ * Lily58 Custom Sharp MIP Display - Matching YOUR wiring
+ * CS=P0.22(D4), SCK=P0.20(D3), MOSI=P0.17(D2)
+ */
+
+/ {
+    chosen {
+        zephyr,display = &sharp_display;
+    };
+};
+
+// Disable I2C to avoid conflicts  
+&pro_micro_i2c {
+    status = "disabled";
+};
+
+// Override the nice_view SPI configuration to match your pins
+&pro_micro_spi {
+    status = "okay";
+    cs-gpios = <&pro_micro 16 GPIO_ACTIVE_HIGH>; // D4 = P0.22
+    
+    sharp_display: ls013b7dh03@0 {
+        compatible = "sharp,ls0xx";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        width = <160>;
+        height = <68>;
+    };
+};
