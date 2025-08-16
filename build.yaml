@@ -1,6 +1,6 @@
-# build.yaml - Standard nice!view with dual battery support
+# build.yaml - Using zmk-nice-oled for dual battery display
 include:
   - board: nice_nano_v2
-    shield: lily58_left nice_view_adapter nice_view
+    shield: lily58_left nice_view_adapter nice_oled
   - board: nice_nano_v2
     shield: lily58_right
