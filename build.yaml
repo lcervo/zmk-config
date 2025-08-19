@@ -3,4 +3,4 @@ include:
   - board: nice_nano_v2
     shield: lily58_left nice_view_adapter nice_oled
   - board: nice_nano_v2
-    shield: lily58_right
+    shield: lily58_right  # No display on right side
