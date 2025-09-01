@@ -1,4 +1,5 @@
-# build.yaml - With Nice!View on both sides
+
+# build.yaml - Using standard nice_view with custom logo
 include:
   # Regular builds
   - board: nice_nano_v2
