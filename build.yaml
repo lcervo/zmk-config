@@ -1,13 +1,12 @@
-
-# build.yaml - Using standard nice_view with custom logo
+# build.yaml - Using nice-view-gem for custom logos
 include:
   # Regular builds
   - board: nice_nano_v2
-    shield: lily58_left nice_view_adapter nice_view
+    shield: lily58_left nice_view_adapter nice_view_gem
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: nice_nano_v2
-    shield: lily58_right nice_view_adapter nice_view
+    shield: lily58_right nice_view_adapter nice_view_gem
   
   # Settings reset builds (add these temporarily)
   - board: nice_nano_v2

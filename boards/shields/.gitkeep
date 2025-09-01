@@ -1,0 +1,45 @@
+// Custom logo override - replace default balloons with your zigzag
+// This file will be used instead of the default balloons.c
+
+#ifdef __has_include
+    #if __has_include("lvgl.h")
+        #ifndef LV_LVGL_H_INCLUDE_SIMPLE
+            #define LV_LVGL_H_INCLUDE_SIMPLE
+        #endif
+    #endif
+#endif
+
+#if defined(LV_LVGL_H_INCLUDE_SIMPLE)
+    #include "lvgl.h"
+#else
+    #include "lvgl/lvgl.h"
+#endif
+
+#ifndef LV_ATTRIBUTE_MEM_ALIGN
+#define LV_ATTRIBUTE_MEM_ALIGN
+#endif
+
+#ifndef LV_ATTRIBUTE_IMG_BALLOONS
+#define LV_ATTRIBUTE_IMG_BALLOONS
+#endif
+
+// Simple zigzag pattern - replace this with your converted logo
+const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BALLOONS uint8_t balloons_map[] = {
+    // This is a placeholder - you'll replace this with your converted zigzag logo
+    0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff,
+    0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00,
+    0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff,
+    0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00,
+    // ... continue pattern or add your actual converted logo data
+    // You'll need about 1190 bytes total for 68x140 image
+};
+
+const lv_img_dsc_t balloons = {
+    .header.cf = LV_IMG_CF_ALPHA_1BIT,
+    .header.always_zero = 0,
+    .header.reserved = 0,
+    .header.w = 68,
+    .header.h = 140,
+    .data_size = sizeof(balloons_map),
+    .data = balloons_map,
+};
