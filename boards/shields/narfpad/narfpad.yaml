@@ -4,7 +4,7 @@ name: NarfPad
 type: shield
 url: https://github.com/sebastian-stumpf/narfpad
 requires:
-  - seeeduino_xiao_ble
+  - xiao_ble
 features:
   - keys
   - encoder
