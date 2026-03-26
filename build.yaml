@@ -1,7 +1,7 @@
 include:
-  - board: xiao_ble
+  - board: xiao_ble//zmk
     shield: narfpad
-  - board: xiao_ble
+  - board: xiao_ble//zmk
     shield: tester_xiao
   # Regular builds
   # - board: nice_nano_v2
