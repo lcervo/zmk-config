@@ -1,0 +1,81 @@
+/*
+ * NarfPad ZMK Shield
+ * 3x3 macropad + rotary encoder
+ * Designed for: Seeed Studio XIAO nRF52840 (Sense or Plus)
+ *
+ * ⚠️  PIN VERIFICATION REQUIRED:
+ * These pin assignments are based on the standard XIAO footprint.
+ * Cross-check with the NarfPad schematic before flashing.
+ * Open the KiCad PCB files in the narfpad repo to verify.
+ *
+ * XIAO nRF52840 pin mapping used here:
+ *   D0 = P0.02  D1 = P0.03  D2 = P0.28
+ *   D3 = P0.29  D4 = P0.04  D5 = P0.05
+ *   D6 = P1.11  D7 = P1.12  D8 = P1.13
+ *   D9 = P1.14  D10= P1.15
+ *
+ * Matrix assumed:
+ *   Rows: D0(P0.02), D1(P0.03), D2(P0.28)
+ *   Cols: D3(P0.29), D4(P0.04), D5(P0.05)
+ *   Encoder A: D7(P1.12)
+ *   Encoder B: D8(P1.13)
+ *
+ * Key layout (physical):
+ *   [ 1 ][ 2 ][ 3 ]
+ *   [ 4 ][ 5 ][ 6 ]
+ *   [ 7 ][ 8 ][ 9 ]
+ *   [  encoder   ]
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &default_transform;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <3>;
+        rows = <3>;
+        map = <
+            RC(0,0) RC(0,1) RC(0,2)
+            RC(1,0) RC(1,1) RC(1,2)
+            RC(2,0) RC(2,1) RC(2,2)
+        >;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+
+        row-gpios
+            = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   /* D0 = P0.02 */
+            , <&gpio0 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   /* D1 = P0.03 */
+            , <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* D2 = P0.28 */
+            ;
+
+        col-gpios
+            = <&gpio0 29 GPIO_ACTIVE_HIGH>  /* D3 = P0.29 */
+            , <&gpio0 4  GPIO_ACTIVE_HIGH>  /* D4 = P0.04 */
+            , <&gpio0 5  GPIO_ACTIVE_HIGH>  /* D5 = P0.05 */
+            ;
+    };
+
+    encoder: encoder {
+        compatible = "alps,ec11";
+        label = "ENCODER";
+        a-gpios = <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  /* D7 = P1.12 */
+        b-gpios = <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;  /* D8 = P1.13 */
+        steps = <80>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder>;
+        triggers-per-rotation = <20>;
+    };
+};

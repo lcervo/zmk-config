@@ -1,0 +1,15 @@
+file_format: "1"
+id: narfpad
+name: NarfPad
+type: shield
+url: https://github.com/sebastian-stumpf/narfpad
+requires:
+  - seeeduino_xiao_ble
+features:
+  - keys
+  - encoder
+```
+
+**`narfpad.overlay`**
+```
+#include "narfpad.dtsi"
