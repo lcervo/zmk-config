@@ -1,5 +1,10 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
+/* Release P0.28 and P0.29 from NFC and make them regular GPIO */
+&uicr {
+    nfct-pins-as-gpios;
+};
+
 / {
     chosen {
         zmk,kscan = &kscan0;
