@@ -29,32 +29,16 @@
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
-        diode-direction = "col2row";
-
-        /*
-         * Rows = INPUT with PULL_DOWN (col2row)
-         * From PCB measurements:
-         *   top row    = D2 (P0.28, NFC pin - released above)
-         *   middle row = D1 (P0.03)
-         *   bottom row = D0 (P0.02)
-         */
+        diode-direction = "row2col";
         row-gpios
-            = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&xiao_d 2 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 1 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 0 GPIO_ACTIVE_HIGH>
             ;
-
-        /*
-         * Cols = OUTPUT driven HIGH during scan (col2row)
-         * From PCB measurements:
-         *   left col   = D4 (P0.04)
-         *   centre col = D5 (P0.05)
-         *   right col  = D6 (P1.11)
-         */
         col-gpios
-            = <&xiao_d 4 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 5 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 6 GPIO_ACTIVE_HIGH>
+            = <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
 
