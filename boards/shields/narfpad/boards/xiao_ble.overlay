@@ -1,0 +1,8 @@
+/*
+ * Board-specific overlay for xiao_ble.
+ * Releases P0.28 (D2) and P0.29 (D3) from NFC controller
+ * so they can be used as regular GPIO for the key matrix.
+ */
+&uicr {
+    nfct-pins-as-gpios;
+};

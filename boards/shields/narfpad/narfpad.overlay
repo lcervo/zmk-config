@@ -1,14 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
-/*
- * P0.28 (D2) and P0.29 (D3) are NFC pins on nRF52840.
- * This releases them for use as regular GPIO.
- * Required because the NarfPad PCB uses D2 for the top matrix row.
- */
-&uicr {
-    nfct-pins-as-gpios;
-};
-
 / {
     chosen {
         zmk,kscan = &kscan0;
