@@ -26,15 +26,15 @@
         compatible = "zmk,kscan-gpio-direct";
         wakeup-source;
         input-gpios
-            = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* row0 - top    */
-            , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* row1 - middle */
-            , <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col0 - left   */
-            , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col1 - centre */
-            , <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col2 - right  */
-            , <&xiao_d 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* enc A         */
-            , <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* enc B         */
-            , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* spare         */
-            , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* enc switch    */
+            = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* row0 */
+            , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* row1 */
+            , <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col0 */
+            , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col1 */
+            , <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* col2 */
+            , <&xiao_d 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* enc A */
+            , <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* enc B */
+            , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* D9 */
+            , <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)> /* D10 */
             ;
     };
 };
