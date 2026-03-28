@@ -1,21 +1,3 @@
-/*
- * NarfPad default keymap
- *
- * Layout:
- *   ┌───┬───┬───┐
- *   │ 1 │ 2 │ 3 │  ← Row 0
- *   ├───┼───┼───┤
- *   │ 4 │ 5 │ 6 │  ← Row 1
- *   ├───┼───┼───┤
- *   │ 7 │ 8 │ 9 │  ← Row 2
- *   └───┴───┴───┘
- *        [ENC]      Encoder: rotate = vol up/down, press = mute
- *
- * Layers:
- *   0 = Default (numpad + media)
- *   1 = Function (accessed by holding key 9)
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -25,28 +7,12 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* ── Layer 0: Default ─────────────────────────────── */
         default_layer {
-            label = "Default";
             bindings = <
-                &kp KP_N7   &kp KP_N8   &kp KP_N9
-                &kp KP_N4   &kp KP_N5   &kp KP_N6
-                &kp KP_N1   &kp KP_N2   &mo 1
+                &kp N7  &kp N8  &kp N9
+                &kp N4  &kp N5  &kp N6
+                &kp N1  &kp N2  &kp N3
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        /* ── Layer 1: Function / BT ───────────────────────── */
-        fn_layer {
-            label = "Fn";
-            bindings = <
-                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2
-                &bt BT_CLR    &out OUT_TOG   &kp C_MUTE
-                &kp C_PP      &kp C_NEXT     &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN>;
         };
     };
 };
