@@ -22,14 +22,14 @@
         wakeup-source;
         diode-direction = "col2row";
         row-gpios
-            = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* top row    - D2 P0.28 NFC pin released in boards/xiao_ble.overlay */
+            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* middle row - D1 P0.03 */
+            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* bottom row - D0 P0.02 */
             ;
         col-gpios
-            = <&xiao_d 4 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 5 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 6 GPIO_ACTIVE_HIGH>
+            = <&xiao_d 4 GPIO_ACTIVE_HIGH>  /* left col   - D4 P0.04 */
+            , <&xiao_d 5 GPIO_ACTIVE_HIGH>  /* centre col - D5 P0.05 */
+            , <&xiao_d 6 GPIO_ACTIVE_HIGH>  /* right col  - D6 P1.11 */
             ;
     };
 };
