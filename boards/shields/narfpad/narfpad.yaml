@@ -7,9 +7,3 @@ requires:
   - xiao_ble
 features:
   - keys
-  - encoder
-```
-
-**`narfpad.overlay`**
-```
-#include "narfpad.dtsi"

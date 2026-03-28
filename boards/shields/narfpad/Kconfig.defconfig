@@ -9,7 +9,4 @@ config ZMK_SLEEP
 config ZMK_IDLE_SLEEP_TIMEOUT
     default 900000
 
-config EC11
-    default y
-
 endif
