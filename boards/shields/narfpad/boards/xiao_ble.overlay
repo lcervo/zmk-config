@@ -1,8 +1,18 @@
 /*
- * Board-specific overlay for xiao_ble.
- * Releases P0.28 (D2) and P0.29 (D3) from NFC controller
- * so they can be used as regular GPIO for the key matrix.
+ * Add NVS storage partition for xiao_ble.
+ * The Adafruit nRF52840 bootloader reserves 0xF4000-0xFFFFF for itself.
+ * We place the ZMK settings partition just before that at 0xF3000.
+ * Only adding storage_partition — not touching code_partition to avoid duplicate label errors.
  */
-&uicr {
-    nfct-pins-as-gpios;
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = < 0x1 >;
+        #size-cells = < 0x1 >;
+
+        storage_partition: partition@f3000 {
+            label = "storage";
+            reg = < 0xf3000 0x1000 >;
+        };
+    };
 };
