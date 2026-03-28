@@ -1,5 +1,38 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
+/*
+ * Explicitly define the flash storage partition for the XIAO BLE.
+ * This is needed because NVS is not initializing (no fs_nvs log lines).
+ * Layout matches Adafruit nRF52840 bootloader with SoftDevice S140 v7.
+ */
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        sd_partition: partition@0 {
+            label = "mbr";
+            reg = <0x00000000 0x00001000>;
+        };
+
+        code_partition: partition@26000 {
+            label = "code_partition";
+            reg = <0x00026000 0x000cd000>;
+        };
+
+        storage_partition: partition@f3000 {
+            label = "storage";
+            reg = <0x000f3000 0x00001000>;
+        };
+
+        boot_partition: partition@f4000 {
+            label = "adafruit_boot";
+            reg = <0x000f4000 0x0000c000>;
+        };
+    };
+};
+
 / {
     chosen {
         zmk,kscan = &kscan0;
