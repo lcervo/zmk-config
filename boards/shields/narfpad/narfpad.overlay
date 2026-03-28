@@ -9,11 +9,10 @@
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <3>;
-        rows = <3>;
+        rows = <2>;
         map = <
             RC(0,0) RC(0,1) RC(0,2)
             RC(1,0) RC(1,1) RC(1,2)
-            RC(2,0) RC(2,1) RC(2,2)
         >;
     };
 
@@ -21,15 +20,19 @@
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
         diode-direction = "col2row";
+
+        /*
+         * Using only top row (D2/P0.28) and bottom row (D0/P0.02)
+         * Skipping middle row (D1/P0.03) - D4/D5/D6 not working
+         */
         row-gpios
-            = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* top row    - D2 P0.28 NFC pin released in boards/xiao_ble.overlay */
-            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* middle row - D1 P0.03 */
-            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* bottom row - D0 P0.02 */
+            = <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* top row - D1,D2,D3 */
+            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* bottom row - D7,D8,D9 */
             ;
         col-gpios
-            = <&xiao_d 4 GPIO_ACTIVE_HIGH>  /* left col   - D4 P0.04 */
-            , <&xiao_d 5 GPIO_ACTIVE_HIGH>  /* centre col - D5 P0.05 */
-            , <&xiao_d 6 GPIO_ACTIVE_HIGH>  /* right col  - D6 P1.11 */
+            = <&xiao_d 4 GPIO_ACTIVE_HIGH>  /* left col */
+            , <&xiao_d 5 GPIO_ACTIVE_HIGH>  /* centre col */
+            , <&xiao_d 6 GPIO_ACTIVE_HIGH>  /* right col */
             ;
     };
 };
