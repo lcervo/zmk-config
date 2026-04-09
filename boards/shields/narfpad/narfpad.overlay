@@ -23,8 +23,8 @@
         diode-direction = "col2row";
         row-gpios
             = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* left col  - D1 D4 D7 - bodge D2->D9 */
-            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* mid col   - D2 D5 D8 */
-            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* right col - D3 D6 D9 */
+            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* mid col   - D2 D5 D8 */
+            , <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* right col - D3 D6 D9 */
             ;
         col-gpios
             = <&xiao_d 4 GPIO_ACTIVE_HIGH>  /* bottom row - D1 D2 D3 */
