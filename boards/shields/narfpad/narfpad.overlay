@@ -22,7 +22,7 @@
         wakeup-source;
         diode-direction = "col2row";
         row-gpios
-            = <&xiao_d 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* row 0 - D1/D2/D3 - bodge wire D2->D7 */
+            = <&xiao_d 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* row 0 - D1/D2/D3 - D7 hole already on PCB row0 trace */
             , <&xiao_d 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* row 1 - D4/D5/D6 - works natively */
             , <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* row 2 - D7/D8/D9 - bodge wire D0->D10 */
             ;
